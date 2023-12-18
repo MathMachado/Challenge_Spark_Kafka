@@ -730,7 +730,7 @@ spark-submit --class com.example.StreamingApp --master yarn \
 * **Number of Executors**: Adjust based on the available resources and the desired parallelism. We can start with a reasonable number and scale up or down based on performance testing.
 * **Executor Cores**: Depending on the complexity of the streaming logic, we can allocate an appropriate number of cores per executor. It's common to allocate 1-3 cores per executor.
 
-2) **Hourly Spark Batch Job**: For Spark Batch jobs, the resource allocation depends on the size of the data to be processed and the complexity of the processing logic. Batch jobs often involve reading large datasets from storage and performing extensive computation.
+2) **Hourly Spark Batch Job**: For Spark Batch jobs, the resource allocation depends on the size of the data to be processed and the complexity of the processing logic. **Batch jobs often involve reading large datasets from storage and performing extensive computation**.
 
 ```
 # Pseudo Code for Submitting Hourly Spark Batch Job
