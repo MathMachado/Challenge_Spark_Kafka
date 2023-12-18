@@ -35,11 +35,11 @@ Q1. How will you make sure only delta/new records are pulled from RAW Zone to Pr
 
 Q2. How will you move the old data from RAW Zone so that it does not become very large?
 
-Q3. How will you run these programs – Cluster or Client
+Q3. How will you run these programs – Cluster or Client?
 
-Q4. How will you decide how many Cores and Executors are needed for 1) Spark Stream Job 2) Hourly Spark Batch
+Q4. How will you decide how many Cores and Executors are needed for 1) Spark Stream Job 2) Hourly Spark Batch?
 
-Q5. How do you ensure we do not run into small file issue in the RAW and Processed Zone 
+Q5. How do you ensure we do not run into small file issue in the RAW and Processed Zone?
 
 __________________
 # Pseudo code to solve the exercise
@@ -664,7 +664,7 @@ move_old_data(raw_data_path, archive_path, retention_days)
 * **get_file_modification_date**: This function retrieves the modification date of a file. The implementation may vary based on the storage system.
 * **move_files**: This function moves a list of files to a specified destination path. The implementation may vary based on the storage system.
 
-## Q3. How will you run these programs – Cluster or Client
+## Q3. How will you run these programs – Cluster or Client?
 
 The decision to run Spark programs on a cluster or a client depends on the nature of the workload, data size, and available resources. Let's explore both options:
 
@@ -712,7 +712,7 @@ spark-submit --class com.example.MySparkApp --master local[4] my_spark_app.jar
 * Adjust the options (--master and --deploy-mode) based on the deployment choice.
 * In our specific project structure, we may have a shell script in the scripts/ folder for submitting Spark jobs, and the actual Spark programs in Python or Scala in corresponding folders.
 
-## Q4. How will you decide how many Cores and Executors are needed for 1) Spark Stream Job 2) Hourly Spark Batch
+## Q4. How will you decide how many Cores and Executors are needed for 1) Spark Stream Job 2) Hourly Spark Batch?
 
 Deciding on the number of cores and executors for Spark Streaming and Spark Batch jobs involves considering factors like the available resources, the nature of the workload, and the desired parallelism. Below are general guidelines, and it's important to adjust these based on the specific use case and performance testing.
 
@@ -745,7 +745,7 @@ spark-submit --class com.example.BatchApp --master yarn \
 * **Dynamic Allocation**: Spark supports dynamic allocation, which allows it to adjust the number of executors based on workload. We may experiment with dynamic allocation for better resource utilization.
 * **Performance Testing**: Conducting a performance testing with different configurations to identify the optimal number of cores and executors for the specific workload it suggested and it's a best practice.
 
-## Q5. How do you ensure we do not run into small file issue in the RAW and Processed Zone 
+## Q5. How do you ensure we do not run into small file issue in the RAW and Processed Zone?
 
 To avoid the small file issue in the RAW and Processed Zones, we need to optimize the writing strategy for Spark. The small file problem arises when there are many small files stored on a distributed file system, leading to inefficiencies in storage, management, and processing. Here are some strategies to mitigate this issue:
 
