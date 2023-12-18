@@ -727,8 +727,8 @@ spark-submit --class com.example.StreamingApp --master yarn \
 ```
 
 **Considerations:**
-* **Number of Executors**: Adjust based on the available resources and the desired parallelism. **We can start with a reasonable number and scale up or down based on performance testing**.
-* **Executor Cores**: Depending on the complexity of the streaming logic, we can allocate an appropriate number of cores per executor. **It's common to allocate 1-3 cores per executor**.
+* **Number of Executors**: Adjust based on the available resources and the desired parallelism. **We can start with a reasonable number and scale up or down based on performance testing. We can increase the number of executors to parallelize the processing of large datasets. Then, we can test performance with different numbers**.
+* **Executor Cores**: Depending on the complexity of the streaming logic, we can allocate an appropriate number of cores per executor. **It's common to allocate 1-3 cores per executor**. For batch processing, we might allocate more cores per executor to handle larger computation tasks efficiently. We can allocate 3-5 cores per executor, depending on the workload.
 
 2) **Hourly Spark Batch Job**: For Spark Batch jobs, the resource allocation depends on the size of the data to be processed and the complexity of the processing logic. **Batch jobs often involve reading large datasets from storage and performing extensive computation**.
 
@@ -739,10 +739,6 @@ spark-submit --class com.example.BatchApp --master yarn \
   --deploy-mode cluster --num-executors 10 --executor-cores 4 \
   my_hourly_batch_app.jar
 ```
-
-**Considerations:**
-* **Number of Executors**: We can increase the number of executors to parallelize the processing of large datasets. Then, we can test performance with different numbers.
-* **Executor Cores**: For batch processing, we might allocate more cores per executor to handle larger computation tasks efficiently. We can allocate 3-5 cores per executor, depending on the workload.
 
 **Additional Considerations**:
 * **Resource Availability**: We need to consider the total available resources on the cluster and ensure that we are not overcommitting resources.
