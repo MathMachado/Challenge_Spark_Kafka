@@ -109,6 +109,9 @@ project_root/
 |-- data/
 |-- processed_zone
 |-- raw_zone
+|-- streaming_producer_checkpoint/
+|-- streaming_consumer_checkpoint/
+|-- batch_process_checkpoint/
 ```
 
 #### Comments related to the file run_spark_job.sh
@@ -133,7 +136,9 @@ project_root/
 |-- data/
 |-- processed_zone/
 |-- raw_zone/
-
+|-- streaming_producer_checkpoint/
+|-- streaming_consumer_checkpoint/
+|-- batch_process_checkpoint/
 ```
 
 ##### Placing Shell Script in conf/ Folder
@@ -156,6 +161,9 @@ project_root/
 |-- data/
 |-- processed_zone/
 |-- raw_zone/
+|-- streaming_producer_checkpoint/
+|-- streaming_consumer_checkpoint/
+|-- batch_process_checkpoint/
 ```
 
 **Explanation**
@@ -238,6 +246,26 @@ This is the folder where the streaming consumer writes the raw data in Parquet f
 7. **processed_zone/**
 
 This is the folder where the batch process writes the final processed data in Parquet format. 
+
+8. **streaming_producer_checkpoint/**:
+
+Checkpointing is a mechanism that allows Spark to save the state of a streaming or batch application to recover from failures. This folder will contain the metadata and state information related to the Spark Streaming producer application and it's automatically managed by Spark.
+
+9. **streaming_consumer_checkpoint/**:
+
+Checkpointing is a mechanism that allows Spark to save the state of a streaming or batch application to recover from failures. Similar to the producer, this folder will contain metadata and state information for the Spark Streaming consumer application and it's automatically managed by Spark.
+
+10. **batch_process_checkpoint/**:
+
+Checkpointing is a mechanism that allows Spark to save the state of a streaming or batch application to recover from failures and it's automatically managed by Spark.
+
+**Important Notes about checkpoints:**
+- The content inside these checkpoint folders is managed by Spark and should not be manually modified or deleted during application execution.
+- These folders are crucial for ensuring fault tolerance, as Spark applications can recover from failures by using the checkpointed state.
+- Adjust the paths in your Spark application code based on your actual project directory structure.
+
+When a Spark application is executed, Spark will create and manage the checkpoint data inside these folders to keep track of the application's progress and state. If an application fails, Spark can use the checkpointed state to recover and resume processing from where it left off.
+
 
 ## Create sample scripts (pseudo code) and place them in corresponding folder
 ### Pseudo Code for Streaming Producer (streaming_producer.py):
@@ -375,6 +403,7 @@ df = (
     .option("kafka.bootstrap.servers", kafka_bootstrap_servers)
     .option("subscribe", kafka_topic)
     .option("group.id", kafka_group_id)
+    .option("checkpointLocation", "streaming_consumer_checkpoint/") \
     .load()
 )
 ```
