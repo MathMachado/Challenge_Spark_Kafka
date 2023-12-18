@@ -789,7 +789,7 @@ processed_df.write.mode("append").bucketBy(10, "column_name").parquet("hdfs://my
 
 # Fault Tolerance
 
-Fault tolerance in Apache Spark is crucial for ensuring that your data processing jobs can recover from failures. Some key mechanisms for achieving fault tolerance include:
+Fault tolerance in Apache Spark is crucial for ensuring that the data processing jobs can recover from failures. Some key mechanisms for achieving fault tolerance include:
 
 1. **Checkpoints:**
    - Implementing periodic checkpoints helps save the metadata information to a reliable distributed file system.
@@ -807,7 +807,7 @@ Fault tolerance in Apache Spark is crucial for ensuring that your data processin
 Effective error handling is essential for robust data processing applications. Consider the following strategies:
 
 1. **Logging:**
-   - Implement detailed logging in your Spark applications to capture information about errors.
+   - Implement detailed logging in the Spark applications to capture information about errors.
    - Logs can be helpful for debugging and understanding the root cause of failures.
 
 2. **Monitoring:**
@@ -850,13 +850,13 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName("StructuredStreamingExample").getOrCreate()
 
 # Set up a streaming DataFrame with defined schema and source
-streaming_df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "your_kafka_bootstrap_servers").option("subscribe", "your_kafka_topic").load()
+streaming_df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "my_kafka_bootstrap_servers").option("subscribe", "my_kafka_topic").load()
 
-# Define your streaming operations and transformations
+# Define the streaming operations and transformations
 # ...
 
 # Define the checkpoint location
-checkpoint_location = "hdfs://your_hdfs/checkpoints/"
+checkpoint_location = "hdfs://my_hdfs/checkpoints/"
 
 # Configure the streaming query with checkpointing
 query = (
@@ -874,4 +874,4 @@ query.awaitTermination()
 
 In this example, the `checkpointLocation` option is set to a specific HDFS path. This path will store the checkpoint information. When restarting the application, Spark will use this checkpoint information to recover the streaming query's state and continue processing from the specified point.
 
-Ensure you adjust the placeholders such as "your_kafka_bootstrap_servers," "your_kafka_topic," and provide an appropriate checkpoint location based on your environment and requirements.
+Ensure you adjust the placeholders such as "my_kafka_bootstrap_servers," "my_kafka_topic," and provide an appropriate checkpoint location based on the environment and requirements.
