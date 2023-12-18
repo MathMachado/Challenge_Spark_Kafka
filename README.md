@@ -510,15 +510,15 @@ store_last_processed_record_id(processed_df.selectExpr("max(record_id)").first()
 
 **Explanation of the code above**:
 
-* Read Data from RAW Zone: Read Parquet data from the RAW Zone, assuming it's stored in HDFS.
-* Retrieve Last Processed Record_id: Retrieve the last processed record_id from external storage or a checkpoint to identify the starting point for processing new records.
-* Filter Records: Filter out records that have already been processed, using the last processed record_id as a reference.
-* Deduplication: Deduplicate the filtered records based on unique identifiers (e.g., record_id).
-* Data Processing Logic: Define a function (process_data) to perform the actual data processing logic, selecting relevant columns.
-* Apply Data Processing Logic: Apply the defined data processing logic to the deduplicated records.
-* Partition Data: Define a function (partition_data) to partition data based on a specified date field (e.g., "date_field").
-* Write Data to Processed Zone: Write the partitioned data to the Processed Zone in "append" mode.
-* Store Last Processed Record_id: Store the last processed record_id for the next run to ensure processing only new records.
+* **Read Data from RAW Zone**: Read Parquet data from the RAW Zone, assuming it's stored in HDFS.
+* **Retrieve Last Processed Record_id**: Retrieve the last processed record_id from external storage or a checkpoint to identify the starting point for processing new records.
+* **Filter Records**: Filter out records that have already been processed, using the last processed record_id as a reference.
+* **Deduplication**: Deduplicate the filtered records based on unique identifiers (e.g., record_id).
+* **Data Processing Logic**: Define a function (process_data) to perform the actual data processing logic, selecting relevant columns.
+* **Apply Data Processing Logic**: Apply the defined data processing logic to the deduplicated records.
+* **Partition Data**: Define a function (partition_data) to partition data based on a specified date field (e.g., "date_field").
+* **Write Data to Processed Zone**: Write the partitioned data to the Processed Zone in "append" mode.
+* **Store Last Processed Record_id**: Store the last processed record_id for the next run to ensure processing only new records.
 
 
 # Main Shell Script (spark submit) and the Python/Scala Spark program
@@ -629,11 +629,11 @@ move_old_data(raw_data_path, archive_path, retention_days)
 
 **Explanation of the code above**
 
-* move_old_data: This function calculates a date threshold for old data based on a specified retention period (retention_days). It then identifies old data files using the get_old_data_files function and moves them to an archive path using the move_files function.
-* get_old_data_files: This function lists all files in the RAW Zone and filters them based on their modification date, considering the threshold date.
-* list_files: This function lists all files in a given directory. The implementation may vary based on the storage system.
-* get_file_modification_date: This function retrieves the modification date of a file. The implementation may vary based on the storage system.
-* move_files: This function moves a list of files to a specified destination path. The implementation may vary based on the storage system.
+* **move_old_data**: This function calculates a date threshold for old data based on a specified retention period (retention_days). It then identifies old data files using the get_old_data_files function and moves them to an archive path using the move_files function.
+* **get_old_data_files**: This function lists all files in the RAW Zone and filters them based on their modification date, considering the threshold date.
+* **list_files**: This function lists all files in a given directory. The implementation may vary based on the storage system.
+* **get_file_modification_date**: This function retrieves the modification date of a file. The implementation may vary based on the storage system.
+* **move_files**: This function moves a list of files to a specified destination path. The implementation may vary based on the storage system.
 
 ## Q3. How will you run these programs – Cluster or Client
 
