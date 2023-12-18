@@ -826,14 +826,14 @@ Continuous streaming refers to the ability to process data continuously in real-
    - Structured Streaming processes data in micro-batches, providing a higher-level abstraction for developers.
 
 2. **Watermarking:**
-   - Watermarking is crucial for handling late data in event-time processing.
+   - Watermarking is a crucial concept in event time processing with stateful operations, for handling late data in event-time processing.
    - It helps define a threshold beyond which events are considered late and are not processed.
 
-3. **Stateful Operations:**
+4. **Stateful Operations:**
    - Structured Streaming supports stateful operations, allowing you to maintain state across batches.
    - Stateful operations are useful for scenarios where you need to remember information over time.
 
-4. **Checkpointing:**
+5. **Checkpointing:**
    - Checkpointing is essential for fault tolerance in streaming applications.
    - It helps recover the streaming application from a consistent state in case of failures.
 
